@@ -28,18 +28,23 @@ public class MissionControlController {
                 System.out.println(a);
             }
 
-            // --- TASK 2: Filter ---
+            // TASK 2
             handleSpacecraftFilter();
-        }}
+
+            //TASK 3
+            System.out.println("\nSorted Astronauts (Exp Desc, Name Asc):");
+
+            List<Astronaut> sorted = service.getSortedAstronauts();
+            sorted.forEach(System.out::println);
 
 
+    }}
 
     private void handleSpacecraftFilter() {
         System.out.print("Input Spacecraft: ");
         Scanner scanner = new Scanner(System.in);
         if (scanner.hasNext()) {
             String input = scanner.next();
-
             List<Astronaut> filtered = service.filterAstronauts(input, AstronautStatus.ACTIVE);
             filtered.forEach(System.out::println);
         }

@@ -33,5 +33,13 @@ public class MissionControlService {
                 .collect(Collectors.toList());
     }
 
+    // Task 3
+    public List<Astronaut> getSortedAstronauts() {
+        return astronauts.stream()
+                .sorted(Comparator.comparingInt(Astronaut::getExperienceLevel).reversed()
+                        .thenComparing(Astronaut::getName))
+                .collect(Collectors.toList());
+    }
+
 
 }
