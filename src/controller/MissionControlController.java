@@ -48,9 +48,22 @@ public class MissionControlController {
                         e.getId(), e.getBasePoints(), service.calculateComputedPoints(e));
             }
 
+            //TASK 6
+            System.out.println("\nTop 5 Astronauts:");
+            List<Astronaut> top5 = service.getTopAstronauts(5);
+            for (int i = 0; i < top5.size(); i++) {
+                Astronaut a = top5.get(i);
+                System.out.printf("%d. %s (%s) -> %d%n",
+                        i + 1, a.getName(), a.getSpacecraft(), service.calculateTotalScore(a.getId()));
+            }
+            if (!top5.isEmpty()) {
+                System.out.println("Leading spacecraft: " + top5.get(0).getSpacecraft());
+            }
 
 
-    }}
+
+
+        }}
 
     private void handleSpacecraftFilter() {
         System.out.print("Input Spacecraft: ");

@@ -73,6 +73,33 @@ public class MissionControlService {
         return events.stream().limit(n).collect(Collectors.toList());
     }
 
+    //Task 6
+    public int calculateTotalScore(int astronautId) {
+        int eventPoints = events.stream()
+                .filter(e -> e.getAstronautId() == astronautId)
+                .mapToInt(this::calculateComputedPoints)
+                .sum();
+
+        int supplyPoints = supplies.stream()
+                .filter(s -> s.getAstronautId() == astronautId)
+                .mapToInt(Supply::getValue)
+                .sum();
+
+        return eventPoints + supplyPoints;
+    }
+
+    public List<Astronaut> getTopAstronauts(int limit) {
+        return astronauts.stream()
+                .sorted((a1, a2) -> {
+                    int s1 = calculateTotalScore(a1.getId());
+                    int s2 = calculateTotalScore(a2.getId());
+                    if (s1 != s2) return Integer.compare(s2, s1);
+                    return a1.getName().compareTo(a2.getName());
+                })
+                .limit(limit)
+                .collect(Collectors.toList());
+    }
+
 
 
 
