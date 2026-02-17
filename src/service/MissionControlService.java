@@ -100,6 +100,27 @@ public class MissionControlService {
                 .collect(Collectors.toList());
     }
 
+    // Task 7
+    public void generateMissionReport(String filename) throws IOException {
+        Map<MissionEventType, Long> counts = events.stream()
+                .collect(Collectors.groupingBy(MissionEvent::getType, Collectors.counting()));
+
+        // Sorting
+        List<Map.Entry<MissionEventType, Long>> sortedEntries = new ArrayList<>(counts.entrySet());
+        sortedEntries.sort((e1, e2) -> {
+            int cmp = Long.compare(e2.getValue(), e1.getValue());
+            if (cmp != 0) return cmp;
+            return e1.getKey().name().compareTo(e2.getKey().name());
+        });
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Map.Entry<MissionEventType, Long> entry : sortedEntries) {
+                writer.write(entry.getKey() + " -> " + entry.getValue());
+                writer.newLine();
+            }
+        }
+    }
+
 
 
 

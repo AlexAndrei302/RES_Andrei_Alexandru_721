@@ -60,10 +60,13 @@ public class MissionControlController {
                 System.out.println("Leading spacecraft: " + top5.get(0).getSpacecraft());
             }
 
+            //TASK 7
+            service.generateMissionReport("mission_report.txt");
 
-
-
-        }}
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
 
     private void handleSpacecraftFilter() {
         System.out.print("Input Spacecraft: ");
