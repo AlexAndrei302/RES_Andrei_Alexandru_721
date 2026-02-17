@@ -41,6 +41,14 @@ public class MissionControlController {
             service.exportReverseSortedAstronauts("astronauts_sorted.txt");
 
 
+            //TASK 5
+            System.out.println();
+            for (MissionEvent e : service.getFirstNEvents(5)) {
+                System.out.printf("Event %d -> raw=%d -> computed=%d%n",
+                        e.getId(), e.getBasePoints(), service.calculateComputedPoints(e));
+            }
+
+
 
     }}
 

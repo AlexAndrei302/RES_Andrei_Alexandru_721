@@ -55,6 +55,25 @@ public class MissionControlService {
         }
     }
 
+    // Task 5
+    public int calculateComputedPoints(MissionEvent e) {
+        int bp = e.getBasePoints();
+        int day = e.getDay();
+        switch (e.getType()) {
+            case EVA:            return bp + (2 * day);
+            case SYSTEM_FAILURE: return bp - 3;
+            case SCIENCE:        return bp + (day % 4);
+            case MEDICAL:        return bp;
+            case COMMUNICATION:  return bp + 5;
+            default:             return bp;
+        }
+    }
+
+    public List<MissionEvent> getFirstNEvents(int n) {
+        return events.stream().limit(n).collect(Collectors.toList());
+    }
+
+
 
 
 }
