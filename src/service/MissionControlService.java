@@ -26,4 +26,12 @@ public class MissionControlService {
     public int getEventsCount() { return events.size(); }
     public int getSuppliesCount() { return supplies.size(); }
 
+    // Task 2
+    public List<Astronaut> filterAstronauts(String spacecraft, AstronautStatus status) {
+        return astronauts.stream()
+                .filter(a -> a.getSpacecraft().equalsIgnoreCase(spacecraft) && a.getStatus() == status)
+                .collect(Collectors.toList());
+    }
+
+
 }

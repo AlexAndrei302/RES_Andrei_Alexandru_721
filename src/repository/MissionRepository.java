@@ -55,7 +55,7 @@ public class MissionRepository {
         return list;
     }
 
-    // --- Helper Method pentru citire JSON ---
+
     private List<Map<String, String>> readJson(String filePath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filePath)));
         content = content.trim();
