@@ -37,6 +37,10 @@ public class MissionControlController {
             List<Astronaut> sorted = service.getSortedAstronauts();
             sorted.forEach(System.out::println);
 
+            //TASK 4
+            service.exportReverseSortedAstronauts("astronauts_sorted.txt");
+
+
 
     }}
 

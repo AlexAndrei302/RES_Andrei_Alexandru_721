@@ -41,5 +41,20 @@ public class MissionControlService {
                 .collect(Collectors.toList());
     }
 
+    // Task 4
+
+    public void exportReverseSortedAstronauts(String filename) throws IOException {
+        List<Astronaut> list = new ArrayList<>(getSortedAstronauts());
+        Collections.reverse(list);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            for (Astronaut a : list) {
+                writer.write(a.toString());
+                writer.newLine();
+            }
+        }
+    }
+
+
 
 }
